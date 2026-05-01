@@ -68,9 +68,9 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["Inter", "Inter Fallback"],
-        serif: ["Playfair Display", "Playfair Display Fallback"],
-        mono: ["Geist Mono", "Geist Mono Fallback"],
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        serif: ["var(--font-playfair)", "Georgia", "serif"],
+        mono: ["var(--font-geist-mono)", "Consolas", "monospace"],
       },
       keyframes: {
         "accordion-down": {
