@@ -27,9 +27,6 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 1.5 }}
           className="mb-6"
         >
-          <span className="inline-block rounded-full border border-border bg-secondary/50 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-muted-foreground">
-            Available for work
-          </span>
         </motion.div>
 
         <motion.h1
@@ -60,12 +57,12 @@ export function HeroSection() {
         >
           <Button size="lg" className="group px-8" asChild>
             <a href="#projects">
-              View Projects
+              Proyectos Realizados
               <ArrowDown className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
             </a>
           </Button>
           <Button size="lg" variant="outline" className="px-8 bg-transparent" asChild>
-            <a href="#contact">Get in Touch</a>
+            <a href="#contact">Contacto</a>
           </Button>
         </motion.div>
 
@@ -78,7 +75,6 @@ export function HeroSection() {
           {[
             { icon: Github, href: "https://github.com", label: "GitHub" },
             { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-            { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
           ].map(({ icon: Icon, href, label }) => (
             <a
               key={label}
