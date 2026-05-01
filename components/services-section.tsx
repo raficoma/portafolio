@@ -2,33 +2,56 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
-import { Code, Palette, Smartphone, Zap, ArrowRight } from "lucide-react"
+import { Code, Database, Layers, Zap, ArrowRight } from "lucide-react"
 
 const services = [
   {
     icon: Code,
-    title: "Web Development",
+    title: "Desarrollo Backend",
     description:
-      "Building fast, scalable, and maintainable web applications using modern technologies and best practices.",
-    features: ["Custom Web Apps", "E-commerce", "CMS Integration", "API Development"],
+      "Creación de lógica de negocio robusta y escalable utilizando el ecosistema avanzado de Microsoft .NET.",
+    features: [
+      "ASP.NET Core & C#",
+      "Arquitecturas MVC y N-Capas",
+      "APIs REST & WebServices",
+      "Librerías Reutilizables"
+    ],
   },
   {
-    icon: Palette,
-    title: "UI/UX Design",
-    description: "Creating intuitive and beautiful interfaces that enhance user experience and drive engagement.",
-    features: ["User Research", "Wireframing", "Prototyping", "Design Systems"],
+    icon: Database,
+    title: "Ingeniería de Datos",
+    description:
+      "Especialista en el diseño, gestión y optimización de bases de datos relacionales de alto rendimiento.",
+    features: [
+      "SQL Server & Oracle",
+      "Stored Procedures & T-SQL",
+      "Procesos ETL (SSIS/SSRS)",
+      "Optimización de Consultas"
+    ],
   },
   {
-    icon: Smartphone,
-    title: "Mobile Development",
-    description: "Developing cross-platform mobile applications that deliver native-like performance.",
-    features: ["React Native", "iOS & Android", "App Store Deployment", "Push Notifications"],
+    icon: Layers,
+    title: "Arquitectura y Software Empresarial",
+    description:
+      "Diseño de soluciones e implementación de sistemas de misión crítica bajo arquitecturas robustas y escalables.",
+    features: [
+      "Arquitectura N-Capas y MVC",
+      "Desarrollo con GeneXus",
+      "Componentes DevExpress",
+      "Soporte a Aplicaciones Críticas"
+    ],
   },
   {
     icon: Zap,
-    title: "Performance Optimization",
-    description: "Improving website speed and performance for better user experience and SEO rankings.",
-    features: ["Core Web Vitals", "Code Splitting", "Image Optimization", "Caching Strategies"],
+    title: "Consultoría y Agilidad",
+    description:
+      "Mejora del rendimiento de aplicaciones críticas y soporte técnico de nivel profesional.",
+    features: [
+      "Reducción de tiempos de entrega",
+      "Mantenimiento de Apps Web",
+      "Soporte a Sistemas Críticos",
+      "Calidad de Código y Mejora Continua"
+    ],
   },
 ]
 
@@ -46,8 +69,8 @@ export function ServicesSection() {
           transition={{ duration: 0.8 }}
           className="mb-16 text-center"
         >
-          <span className="mb-4 inline-block text-sm font-medium uppercase tracking-widest text-accent">What I Do</span>
-          <h2 className="font-serif text-4xl font-medium tracking-tight md:text-5xl">Services</h2>
+          <span className="mb-4 inline-block text-sm font-medium uppercase tracking-widest text-accent">Soluciones técnicas y arquitectura de software</span>
+          <h2 className="font-serif text-4xl font-medium tracking-tight md:text-5xl">Áreas de Especialidad</h2>
         </motion.div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

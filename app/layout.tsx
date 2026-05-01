@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "John Doe | Creative Developer & Designer",
+  title: "R David Ochoa Q| Creative Developer & Designer",
   description:
     "Award-winning creative developer crafting exceptional digital experiences. Specializing in modern web development, UI/UX design, and cutting-edge interactive solutions.",
   keywords: [
@@ -27,14 +27,14 @@ export const metadata: Metadata = {
     "web development",
     "UI/UX",
   ],
-  authors: [{ name: "John Doe" }],
+  authors: [{ name: "R David Ochoa Q" }],
   openGraph: {
-    title: "John Doe | Creative Developer & Designer",
+    title: "R David Ochoa Q | Creative Developer & Designer",
     description:
       "Award-winning creative developer crafting exceptional digital experiences.",
     type: "website",
   },
-  generator: "David Ochoa Portfolio",
+  generator: "R David Ochoa Q Portfolio",
 };
 
 export default function RootLayout({

@@ -21,8 +21,6 @@ const footerLinks = [
     links: [
       { name: "GitHub", href: "https://github.com", icon: Github },
       { name: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
-      { name: "Twitter", href: "https://twitter.com", icon: Twitter },
-      { name: "Dribbble", href: "https://dribbble.com", icon: Dribbble },
     ],
   },
 ];
@@ -50,7 +48,7 @@ export function Footer() {
               href="#"
               className="font-serif text-2xl font-medium tracking-tight"
             >
-              JD
+              RDOQ
             </a>
             <p className="mt-4 max-w-sm text-muted-foreground">
               Creative developer & designer crafting exceptional digital
