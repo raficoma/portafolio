@@ -37,13 +37,12 @@ export function ContactSection() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <span className="mb-4 inline-block text-sm font-medium uppercase tracking-widest text-accent">Contact</span>
+            <span className="mb-4 inline-block text-sm font-medium uppercase tracking-widest text-accent">Contáctame</span>
             <h2 className="mb-6 font-serif text-4xl font-medium leading-tight tracking-tight md:text-5xl">
-              Let's create something amazing together
+              Convirtiendo necesidades de negocio en software de calidad
             </h2>
             <p className="mb-10 text-muted-foreground">
-              I'm always interested in hearing about new projects, creative ideas, or opportunities to be part of your
-              vision. Feel free to reach out.
+              Puedes escribirme por correo electrónico o a través de mis redes sociales.
             </p>
 
             <div className="space-y-6">
@@ -52,9 +51,9 @@ export function ContactSection() {
                   <Mail className="h-5 w-5 text-accent" />
                 </div>
                 <div>
-                  <div className="text-sm text-muted-foreground">Email</div>
-                  <a href="mailto:hello@johndoe.dev" className="font-medium hover:text-accent">
-                    hello@johndoe.dev
+                  <div className="text-sm text-muted-foreground">Correo</div>
+                  <a href="mailto:raficoma@gmail.com" className="font-medium hover:text-accent">
+                    raficoma@gmail.com
                   </a>
                 </div>
               </div>
@@ -64,8 +63,8 @@ export function ContactSection() {
                   <MapPin className="h-5 w-5 text-accent" />
                 </div>
                 <div>
-                  <div className="text-sm text-muted-foreground">Location</div>
-                  <span className="font-medium">San Francisco, CA</span>
+                  <div className="text-sm text-muted-foreground">Ubicación</div>
+                  <span className="font-medium">Bogotá, Colombia</span>
                 </div>
               </div>
             </div>
@@ -87,7 +86,6 @@ export function ContactSection() {
                   <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-accent/10">
                     <CheckCircle className="h-8 w-8 text-accent" />
                   </div>
-                  <h3 className="mb-2 font-serif text-2xl font-medium">Message Sent!</h3>
                   <p className="text-muted-foreground">Thank you for reaching out. I'll get back to you soon.</p>
                 </motion.div>
               ) : (
