@@ -7,11 +7,11 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 
 const navItems = [
-  { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
-  { name: "Services", href: "#services" },
-  { name: "Contact", href: "#contact" },
+  { name: "Sobre mí", href: "#about" },
+  { name: "Proyectos", href: "#projects" },
+  { name: "Habilidades", href: "#skills" },
+  { name: "Servicios", href: "#services" },
+  { name: "Contacto", href: "#contact" },
 ]
 
 export function Navigation() {

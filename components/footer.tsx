@@ -7,20 +7,20 @@ import { Button } from "@/components/ui/button";
 
 const footerLinks = [
   {
-    title: "Navigation",
+    title: "Navegación",
     links: [
-      { name: "About", href: "#about" },
-      { name: "Projects", href: "#projects" },
-      { name: "Skills", href: "#skills" },
-      { name: "Services", href: "#services" },
-      { name: "Contact", href: "#contact" },
+      { name: "Sobre mí", href: "#about" },
+      { name: "Proyectos", href: "#projects" },
+      { name: "Habilidades", href: "#skills" },
+      { name: "Servicios", href: "#services" },
+      { name: "Contacto", href: "#contact" },
     ],
   },
   {
     title: "Social",
     links: [
-      { name: "GitHub", href: "https://github.com", icon: Github },
-      { name: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
+      { name: "GitHub", href: "https://github.com/raficoma", icon: Github },
+      { name: "LinkedIn", href: "https://www.linkedin.com/in/rafael-david-ochoa-quijano", icon: Linkedin },
     ],
   },
 ];
@@ -51,8 +51,8 @@ export function Footer() {
               RDOQ
             </a>
             <p className="mt-4 max-w-sm text-muted-foreground">
-              Creative developer & designer crafting exceptional digital
-              experiences. Let's build something amazing together.
+              Desarrollo Backend .NET
+              Soluciones empresariales escalables convirtiendo necesidades de negocio en software de calidad
             </p>
           </div>
 
