@@ -4,27 +4,72 @@ import type React from "react"
 
 import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
-import { Mail, MapPin, Send, CheckCircle } from "lucide-react"
+import { Mail, MapPin, Send, CheckCircle, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
 
 export function ContactSection() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? ""
+  const fieldsValid = name.trim() && email.trim() && message.trim()
+
+  const handleWhatsAppClick = () => {
+    if (!fieldsValid) {
+      setErrorMessage("Por favor completa todos los campos.")
+      return
+    }
+    const text = encodeURIComponent(
+      `Hola, quiero contactarte desde tu portafolio.\n\nNombre: ${name}\nEmail: ${email}\n\nMensaje:\n${message}`,
+    )
+    const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${text}`
+    try {
+      window.open(url, "_blank")
+    } catch (err) {
+      console.warn("No se pudo abrir WhatsApp:", err)
+    }
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setErrorMessage(null)
     setIsLoading(true)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, message }),
+      })
 
-    setIsLoading(false)
-    setIsSubmitted(true)
+      if (!response.ok) {
+        const errorResponse = await response.json().catch(() => ({ error: "Error al enviar el mensaje." }))
+        throw new Error(errorResponse.error || "Error al enviar el mensaje.")
+      }
+
+      const sentName = name
+      const sentEmail = email
+      const sentMessage = message
+
+      setIsSubmitted(true)
+      setName("")
+      setEmail("")
+      setMessage("")
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : "Error al enviar el mensaje.")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -86,60 +131,90 @@ export function ContactSection() {
                   <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-accent/10">
                     <CheckCircle className="h-8 w-8 text-accent" />
                   </div>
-                  <p className="text-muted-foreground">Thank you for reaching out. I'll get back to you soon.</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid gap-6 sm:grid-cols-2">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Name</Label>
-                      <Input id="name" placeholder="John Doe" required className="bg-background" />
+                      <Input
+                        id="name"
+                        value={name}
+                        placeholder="Nombre"
+                        required
+                        className="bg-background"
+                        onChange={(event) => setName(event.target.value)}
+                      />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
                       <Input
                         id="email"
                         type="email"
-                        placeholder="john@example.com"
+                        value={email}
+                        placeholder="email@example.com"
                         required
                         className="bg-background"
+                        onChange={(event) => setEmail(event.target.value)}
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="subject">Subject</Label>
-                    <Input id="subject" placeholder="Project Inquiry" required className="bg-background" />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
                     <Textarea
                       id="message"
-                      placeholder="Tell me about your project..."
+                      value={message}
+                      placeholder="Mensaje..."
                       rows={5}
                       required
                       className="resize-none bg-background"
+                      onChange={(event) => setMessage(event.target.value)}
                     />
                   </div>
 
-                  <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
-                    {isLoading ? (
-                      <span className="flex items-center gap-2">
-                        <motion.span
-                          className="h-4 w-4 rounded-full border-2 border-current border-t-transparent"
-                          animate={{ rotate: 360 }}
-                          transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                        />
-                        Sending...
-                      </span>
-                    ) : (
-                      <span className="flex items-center gap-2">
-                        Send Message
-                        <Send className="h-4 w-4" />
-                      </span>
-                    )}
-                  </Button>
+                  {errorMessage ? (
+                    <p className="rounded-md border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+                      {errorMessage}
+                    </p>
+                  ) : null}
+
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {/* <Button type="submit" size="lg" disabled={isLoading || !fieldsValid}>
+                      {isLoading ? (
+                        <span className="flex items-center gap-2">
+                          <motion.span
+                            className="h-4 w-4 rounded-full border-2 border-current border-t-transparent"
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                          />
+                          Enviando...
+                        </span>
+                      ) : (
+                        <span className="flex items-center gap-2">
+                          <Send className="h-4 w-4" /> Enviar Correo
+                        </span>
+                      )}
+                    </Button> */}
+                    {whatsappNumber ? (
+                      <Button
+                        type="button"
+                        variant="secondary"
+                        size="lg"
+                        disabled={!fieldsValid}
+                        onClick={handleWhatsAppClick}
+                      >
+                        <span className="flex items-center gap-2">
+                          <Phone className="h-4 w-4" /> Enviar WhatsApp
+                        </span>
+                      </Button>
+                    ) : null}
+                  </div>
+
+                  <p className="pt-3 text-xs text-muted-foreground">
+                    {!fieldsValid
+                      ? "Completa todos los campos para habilitar los botones de envío."
+                      : whatsappNumber
+                        ? "Elige tu método de contacto."
+                        : "Configura NEXT_PUBLIC_WHATSAPP_NUMBER para habilitar WhatsApp."}
+                  </p>
                 </form>
               )}
             </div>
